@@ -1,0 +1,211 @@
+﻿@model CompanyProj.Models.Empresa
+
+<div class="main-container">
+    <h1 class="display-6 text-center m-0">@ViewData["Title"]</h1>
+    <div class="statusMessage"></div>
+    <div class="row m-0">
+        <div class="col-12 col-md-6 m-0">
+            <fieldset class="form-group border p-2">
+                <legend class="w-auto" style="margin: 0">Empresa</legend>
+                <div class="form-container">
+                    <form asp-action="Register" asp-controller="Company" method="post" id="formCompany">
+                        <div class="row">
+                            <div class="col-12 m-0">
+                                <div class="form-group m-0">
+                                    <label for="formCompanyName" style="margin: 0">Empresa</label>
+                                    <input type="text" class="form-control" id="formCompanyName" placeholder="Nome da Empresa" />
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-12 col-lg-5 m-0">
+                                <div class="form-group m-0">
+                                    <label for="formCompanyCnpj" style="margin: 0">CNPJ</label>
+                                    <input type="text" class="form-control cpfcnpj" id="formCompanyCnpj" maxlength="18" placeholder="00.000.000/0000-00" />
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-12 col-lg-7 m-0">
+                                <div class="form-group">
+                                    <label for="formCompanyUf" style="margin: 0">UF</label>
+                                    <select class="form-control" id="formCompanyUf">
+                                        @for (int i = 0; i < Model.Ufs.Count(); i++)
+                                        {
+                                            <option value="@i">@Model.Ufs[i]</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group m-0">
+                                    <button type="submit" class="btn btn-primary btn-md">Cadastrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-12 col-md-6 m-auto">
+            <fieldset class="form-group border p-2 upd" disabled>
+                <legend class="w-auto" style="margin: 0">Fornecedor</legend>
+                <div class="form-container">
+                    <form asp-action="SupplierRegister" asp-controller="Company" method="post" id="formSupplier">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-md-12 col-xl-6 m-0">
+                                <div class="form-group m-0">
+                                    <label for="formSupplierCompany" style="margin: 0">Empresa</label>
+                                    <select class="form-control" id="formSupplierCompany"></select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-12 col-xl-6 m-0">
+                                <div class="form-group m-0">
+                                    <label for="formSupplierName" style="margin: 0">Nome</label>
+                                    <input type="text" class="form-control" id="formSupplierName" placeholder="Nome do Fornecedor" />
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-5 col-xl-6 m-0">
+                                <div class="form-group m-0">
+                                    <label for="formSupplierType" style="margin: 0">Tipo</label>
+                                    <select class="form-control" id="formSupplierType">
+                                        <option value="0">Física</option>
+                                        <option value="1">Jurídica</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-7 col-xl-6 m-0">
+                                <div class="type-f">
+                                    <div class="form-group m-0">
+                                        <label for="formSupplierCpf" style="margin: 0">CPF</label>
+                                        <input type="text" class="form-control cpf" id="formSupplierCpf" maxlength="14" placeholder="000.000.000-00" />
+                                    </div>
+                                </div>
+                                <div class="type-j" hidden>
+                                    <div class="form-group m-0">
+                                        <label for="formSupplierCnpj" style="margin: 0">CNPJ</label>
+                                        <input type="text" class="form-control cnpj" id="formSupplierCnpj" maxlength="18" placeholder="00.000.000/0000-00" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-6 m-0">
+                                <div class="form-group m-0">
+                                    <label for="formSupplierRg" style="margin: 0">R.G.</label>
+                                    <input type="text" class="form-control" id="formSupplierRg" maxlength="9" placeholder="0.000.000" />
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-6 m-0">
+                                <div class="form-group m-0">
+                                    <label for="formSupplierBirthDate" style="margin: 0">Data Nascimento</label>
+                                    <input type="text" class="form-control" id="formSupplierBirthDate" maxlength="10" placeholder="00/00/0000" />
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-6 m-0">
+                                <div class="form-group m-0">
+                                    <label for="formSupplierPhone" style="margin: 0">Telefone</label>
+                                    <input type="tel" class="form-control" id="formSupplierPhone" maxlength="14" placeholder="(00) 0000-0000" />
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-6 m-0">
+                                <div class="form-group m-0">
+                                    <label for="formSupplierCellphone" style="margin: 0">Celular</label>
+                                    <input type="tel" class="form-control" id="formSupplierCellphone" maxlength="14" placeholder="(00) 0000-0000" />
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group mt-3 mb-0">
+                                    <button type="submit" class="btn btn-primary btn-md">Cadastrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-12 m-0">
+            <h4 class="text-center">Filtro de Pesquisa</h4>
+            <div class="row m-auto">
+                <div class="col-12 col-sm-4">
+                    <div class="form-group">
+                        <label for="filterSupplier">Fornecedor</label>
+                        <input type="text" id="filterSupplier" class="form-control data-filter" />
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4">
+                    <div class="form-group">
+                        <label for="filterType">CPF/CNPJ</label>
+                        <input type="text" id="filterType" class="form-control data-filter" />
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4">
+                    <div class="form-group">
+                        <label for="filterDatetime">Data Cadastro</label>
+                        <input type="text" id="filterDatetime" class="form-control data-filter" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="table-container">
+                <table class="main-table">
+                    <thead>
+                        <tr>
+                            <th>Nome Fantasia</th>
+                            <th>CNPJ</th>
+                            <th>UF</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @*<tr>
+                            <td>@Model.NomeFantasia</td>
+                            <td>@Model.Cnpj</td>
+                            <td>@Model.Uf</td>
+                            <td>
+                                <button type="button" id="delaction" class="btn btn-secondary btn-sm">x</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <div class="table-scroll-horiz">
+                                    <div class="table-wrap">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Empresa</th>
+                                                    <th>Fornecedor</th>
+                                                    <th>CPF/CNPJ</th>
+                                                    <th>Data Nascimento</th>
+                                                    <th>Data Cadastro</th>
+                                                    <th>RG</th>
+                                                    <th>Telefone</th>
+                                                    <th>Ação</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach(var result in Model.Fornecedores)
+                                                {
+                                                    <tr>
+                                                        <td>@result.Empresa</td>
+                                                        <td>@result.Nome</td>
+                                                        <td>@result.CpfCnpj</td>
+                                                        <td>@result.DataNascimento</td>
+                                                        <td>@result.DataCadastro</td>
+                                                        <td>@result.RegistroGeral</td>
+                                                        <td>
+                                                            @foreach(var tels in result.Telefones)
+                                                            {
+                                                                <span>@tels</span>
+                                                            }
+                                                        </td>
+                                                        <td><button class="btn btn-secondary btn-sm" id="rowdel">x</button></td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>*@
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
